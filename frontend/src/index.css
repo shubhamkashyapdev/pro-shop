@@ -1,0 +1,14 @@
+main {
+  min-height: 80vh;
+}
+
+img {
+  width: 100%;
+}
+
+.rating span {
+  margin: 0.1rem;
+}
+h3 {
+  padding: 1rem 0;
+}
