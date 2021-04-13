@@ -1,23 +1,25 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { Fragment } from 'react'
-import { Col, Row } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Fragment } from 'react';
+import { Col, Row } from 'react-bootstrap';
 
 // component //
-import Product from '../Components/Product/Product'
+import Product from '../Components/Product/Product';
 
 const Home = () => {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
 
   // fetch data //
   useEffect(() => {
     const fetchProducts = async () => {
-      const { data } = await axios.get('/api/products')
-      setProducts(data)
-    }
-    fetchProducts()
+      const {
+        data: { data },
+      } = await axios.get('/api/products');
+      setProducts(data);
+    };
+    fetchProducts();
     // eslint-disable-next-line
-  }, [])
+  }, []);
   return (
     <Fragment>
       <h1>Latest Products</h1>
@@ -29,7 +31,7 @@ const Home = () => {
         ))}
       </Row>
     </Fragment>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

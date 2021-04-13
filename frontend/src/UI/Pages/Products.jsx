@@ -1,24 +1,26 @@
-import React, { Fragment, useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import React, { Fragment, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 // components //
-import Rating from '../Components/Product/Rating/Rating'
+import Rating from '../Components/Product/Rating/Rating';
 
 // react bootstrap //
-import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
+import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 
 const Products = ({ match }) => {
-  const [product, setProduct] = useState([])
+  const [product, setProduct] = useState([]);
 
   // fetch data //
   useEffect(() => {
     const fetchProduct = async () => {
-      const { data } = await axios.get(`/api/products/${match.params.id}`)
-      setProduct(data)
-    }
-    fetchProduct()
-  }, [match])
+      const {
+        data: { data },
+      } = await axios.get(`/api/products/${match.params.id}`);
+      setProduct(data);
+    };
+    fetchProduct();
+  }, [match]);
 
   return (
     <Fragment>
@@ -65,7 +67,7 @@ const Products = ({ match }) => {
                 <Button
                   className='btn-block'
                   type='button'
-                  disbaled={product.countInStock === 0}
+                  disbaled={`${product.countInStock === 0}`}
                 >
                   Add To Cart
                 </Button>
@@ -75,7 +77,7 @@ const Products = ({ match }) => {
         </Col>
       </Row>
     </Fragment>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;
