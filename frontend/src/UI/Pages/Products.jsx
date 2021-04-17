@@ -27,7 +27,7 @@ const Products = ({ history, match }) => {
   // fetch data //
   useEffect(() => {
     dispatch(productDetails(match.params.id));
-  }, [dispatch]);
+  }, [dispatch, match.params.id]);
 
   // handler //
   const addToCartHandler = () => {
