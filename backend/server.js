@@ -1,23 +1,32 @@
-const express = require('express')
+import express from 'express';
+import dotenv from 'dotenv';
+import colors from 'colors';
 
-const products = require('./data/products')
+import connectDB from './config/db.js';
 
-const app = express()
+// routes files //
+import productRoutes from './routes/productRotues.js';
+
+dotenv.config();
+const app = express();
+connectDB();
 
 // Middlewares //
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(express.json());
+import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 
 // Routes //
-app.get('/api/products', (req, res, next) => res.json(products))
-app.get('/api/products/:id', (req, res, next) => {
-  const product = products.find((p) => p._id === req.params.id)
-  res.json(product)
-})
+app.use('/api/products', productRoutes);
 
-// connection //
-const PORT = process.env.PORT || 5000
+app.use(notFound);
+app.use(errorHandler);
+
+// listen //
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`Server is listening in ${process.env.NODE_ENV} on port: ${PORT}`)
-})
+  console.log(
+    `Server is listening in ${process.env.NODE_ENV} mode on port: ${PORT}`
+      .yellow.bold
+  );
+});
