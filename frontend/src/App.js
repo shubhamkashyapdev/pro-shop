@@ -17,6 +17,8 @@ import Login from './UI/Pages/Login';
 import Register from './UI/Pages/Register';
 import Profile from './UI/Pages/Profile';
 import Shipping from './UI/Pages/Shipping';
+import PaymentMethod from './UI/Pages/PaymentMethod';
+import PlaceOrder from './UI/Pages/PlaceOrder';
 
 const App = () => {
   return (
@@ -29,6 +31,8 @@ const App = () => {
             <Route path='/register' component={Register} />
             <Route path='/profile' component={Profile} />
             <Route path='/shipping' component={Shipping} />
+            <Route path='/payment' component={PaymentMethod} />
+            <Route path='/placeorder' component={PlaceOrder} />
             <Route exact path='/' component={Home} />
             <Route path='/products/:id' component={Products} />
             <Route path='/cart/:id?' component={Cart} />

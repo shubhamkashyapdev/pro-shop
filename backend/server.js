@@ -8,6 +8,7 @@ import connectDB from './config/db.js';
 // routes files //
 import productRoutes from './routes/productRotues.js';
 import userRoutes from './routes/userRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -24,6 +25,7 @@ if (process.env.NODE_ENV === 'development') {
 // Routes //
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/orders', orderRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
