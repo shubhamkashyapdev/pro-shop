@@ -23,6 +23,9 @@ const Cart = ({ match, location, history }) => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty));
@@ -34,7 +37,11 @@ const Cart = ({ match, location, history }) => {
     dispatch(removeFromCart(id));
   };
   const checkoutHandler = () => {
-    history.push('/login/?redirect=shipping');
+    if (userInfo) {
+      history.push('/shipping');
+    } else {
+      history.push('/login?redirect=shipping');
+    }
   };
   return (
     <Row>
@@ -48,13 +55,13 @@ const Cart = ({ match, location, history }) => {
         {cartItems.length > 0 && (
           <ListGroup>
             {cartItems.map((item) => (
-              <ListGroup.Item key={item.product}>
+              <ListGroup.Item key={item.id}>
                 <Row>
                   <Col md={2}>
                     <Image src={item.image} alt={item.name} fluid />
                   </Col>
                   <Col md={3}>
-                    <Link to={`/product/${item.product}`}>{item.name}</Link>
+                    <Link to={`/product/${item.id}`}>{item.name}</Link>
                   </Col>
                   <Col md={2}>${item.price}</Col>
                   <Col md={2}>

@@ -15,6 +15,8 @@ import Products from './UI/Pages/Products';
 import Cart from './UI/Pages/Cart';
 import Login from './UI/Pages/Login';
 import Register from './UI/Pages/Register';
+import Profile from './UI/Pages/Profile';
+import Shipping from './UI/Pages/Shipping';
 
 const App = () => {
   return (
@@ -25,6 +27,8 @@ const App = () => {
           <Switch>
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
+            <Route path='/profile' component={Profile} />
+            <Route path='/shipping' component={Shipping} />
             <Route exact path='/' component={Home} />
             <Route path='/products/:id' component={Products} />
             <Route path='/cart/:id?' component={Cart} />

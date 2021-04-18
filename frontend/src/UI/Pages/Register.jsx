@@ -7,7 +7,7 @@ import Message from '../Shared/Message';
 import Loader from '../Shared/Loader';
 
 import { registerUser } from '../../actions/userActions';
-import FormContainer from '../Components/Form/FromContainer';
+import FormContainer from '../Components/Form/FormContainer';
 
 const Register = ({ location, history }) => {
   const [email, setEmail] = useState('');
@@ -49,7 +49,7 @@ const Register = ({ location, history }) => {
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>
           <Form.Control
-            type='name'
+            type='text'
             placeholder='Enter Name'
             value={name}
             onChange={(e) => setName(e.target.value)}

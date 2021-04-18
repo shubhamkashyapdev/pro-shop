@@ -7,7 +7,7 @@ import Message from '../Shared/Message';
 import Loader from '../Shared/Loader';
 
 import { loginUser } from '../../actions/userActions';
-import FormContainer from '../Components/Form/FromContainer';
+import FormContainer from '../Components/Form/FormContainer';
 
 const Login = ({ location, history }) => {
   const [email, setEmail] = useState('');
@@ -21,7 +21,9 @@ const Login = ({ location, history }) => {
   // effects //
   useEffect(() => {
     if (userInfo) {
-      history.push(redirect);
+      console.log(userInfo);
+      console.log(redirect);
+      history.push(`${redirect}`);
     }
   }, [history, userInfo, redirect]);
 
