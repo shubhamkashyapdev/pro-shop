@@ -21,8 +21,6 @@ const Login = ({ location, history }) => {
   // effects //
   useEffect(() => {
     if (userInfo) {
-      console.log(userInfo);
-      console.log(redirect);
       history.push(`${redirect}`);
     }
   }, [history, userInfo, redirect]);

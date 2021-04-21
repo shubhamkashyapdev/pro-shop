@@ -36,7 +36,6 @@ const PlaceOrder = () => {
   // effects //
   useEffect(() => {
     if (success) {
-      console.log(order);
       history.push(`/order/${order.createdOrder._id}`);
     }
 
@@ -46,7 +45,6 @@ const PlaceOrder = () => {
   // handler //
   const placeOrderHandler = (e) => {
     e.preventDefault();
-    console.log(cart.cartItems);
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
@@ -90,7 +88,7 @@ const PlaceOrder = () => {
                   {cart.cartItems.map((item, index) => (
                     <ListGroup.Item key={`${index}`}>
                       <Row>
-                        <Col md={1}>
+                        <Col md={2}>
                           <Image
                             src={item.image}
                             alt={item.name}
