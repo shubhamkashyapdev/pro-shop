@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import colors from 'colors';
 import morgan from 'morgan';
+import path from 'path';
 
 import connectDB from './config/db.js';
 
@@ -30,6 +31,21 @@ app.use('/api/orders', orderRoutes);
 app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 );
+
+const __dirname = path.resolve();
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
+// if we are in production set the build folder as static folder and send the index.html  //
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/build')));
+  app.get('*', (req, res, next) =>
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+  );
+} else {
+  app.get('/', (req, res, next) => {
+    res.send('API is running...');
+  });
+}
 
 app.use(notFound);
 app.use(errorHandler);

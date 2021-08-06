@@ -33,15 +33,6 @@ const PlaceOrder = () => {
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error } = orderCreate;
 
-  // effects //
-  useEffect(() => {
-    if (success) {
-      history.push(`/order/${order.createdOrder._id}`);
-    }
-
-    // eslint-disable-next-line
-  }, [history, success]);
-
   // handler //
   const placeOrderHandler = (e) => {
     e.preventDefault();
@@ -57,6 +48,16 @@ const PlaceOrder = () => {
       })
     );
   };
+
+  // effects //
+  useEffect(() => {
+    if (success) {
+      history.push(`/order/${order.createdOrder._id}`);
+      // history.push(`/order/${order._id}`);
+    }
+
+    // eslint-disable-next-line
+  }, [history, success]);
 
   return (
     <Fragment>
